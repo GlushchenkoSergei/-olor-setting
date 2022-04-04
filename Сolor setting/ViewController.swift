@@ -20,9 +20,13 @@ class ViewController: UIViewController {
     @IBOutlet var sliderBlue: UISlider!
     
     
+    @IBOutlet var buttonDoneLabel: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mainScreen.layer.cornerRadius = mainScreen.frame.width/20
+        buttonDoneLabel.layer.cornerRadius = buttonDoneLabel.frame.height/4
     }
     
     @IBAction func sliderRedAction() {
