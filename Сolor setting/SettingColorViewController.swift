@@ -25,21 +25,22 @@ class SettingColorViewController: UIViewController {
     
     @IBOutlet var buttonDoneLabel: UIButton!
     
+
+    
     var colorMainScreen: UIColor!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mainScreen.backgroundColor = colorMainScreen
         setValueFromMainScreen()
+        setСolorForScreen()
         
         mainScreen.layer.cornerRadius = mainScreen.frame.height/9
         buttonDoneLabel.layer.cornerRadius = buttonDoneLabel.frame.height/4
-        
     }
     
 
     @IBAction func rgbSlider(_ sender: UISlider) {
-        setСolorForAction()
+        setСolorForScreen()
         switch sender {
         case sliderRed:
             textFieldValueRed.text = String(roundingToHundred(sliderRed.value))
@@ -53,11 +54,12 @@ class SettingColorViewController: UIViewController {
         }
     }
     
+    @IBAction func doneButton(_ sender: Any) {
+        print("Нажал кнопку дан")
+    }
+ 
     
 }
-
-
-
 
 
 extension SettingColorViewController {
@@ -66,7 +68,7 @@ extension SettingColorViewController {
         round(value * 100)/100
     }
     
-    private func setСolorForAction() {
+    private func setСolorForScreen() {
         mainScreen.backgroundColor = UIColor.init(
             red: CGFloat(sliderRed.value),
             green: CGFloat(sliderGreen.value),
@@ -87,8 +89,32 @@ extension SettingColorViewController {
     valueRed.text = textFieldValueRed.text
     valueGreen.text = textFieldValueGreen.text
     valueBlue.text = textFieldValueBlue.text
-    
+    }
 }
+
+extension SettingColorViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case textFieldValueRed:
+            if let value = Float(textFieldValueRed.text ?? "0.0") {
+                sliderRed.value = value
+                valueRed.text = String(value)
+            }
+        case textFieldValueGreen:
+            if let value = Float(textFieldValueGreen.text ?? "0.0") {
+                sliderGreen.value = value
+                valueGreen.text = String(value)
+            }
+        default:
+            if let value = Float(textFieldValueBlue.text ?? "0.0") {
+                sliderBlue.value = value
+                valueBlue.text = String(value)
+            }
+        }
+        setСolorForScreen()
+        return true
+    }
 }
+
 
 
