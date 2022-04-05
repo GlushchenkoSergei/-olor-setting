@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main Screen View Controller-->
         <scene sceneID="iCU-W4-lLC">
             <objects>
-                <viewController id="chk-ud-t7n" sceneMemberID="viewController">
+                <viewController id="chk-ud-t7n" customClass="MainScreenViewController" customModule="Сolor_setting" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BBa-Fc-3TQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -22,7 +22,7 @@
                             </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JFM-kr-I83">
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
-                                <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                <color key="backgroundColor" systemColor="systemYellowColor"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="aps-Gd-zCw"/>
@@ -37,19 +37,22 @@
                     <navigationItem key="navigationItem" id="2DZ-VX-hoj">
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="xiG-97-bzh">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="presentation" id="3ip-1q-Bu8"/>
+                                <segue destination="BYZ-38-t0r" kind="presentation" identifier="setColorCV" id="3ip-1q-Bu8"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="mainScreen" destination="JFM-kr-I83" id="xX7-EN-fE4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SG6-38-Wx6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="214.49275362318843" y="83.705357142857139"/>
         </scene>
-        <!--View Controller-->
+        <!--Setting Color View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="BYZ-38-t0r" customClass="ViewController" customModule="Сolor_setting" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="BYZ-38-t0r" customClass="SettingColorViewController" customModule="Сolor_setting" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -116,25 +119,25 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="300" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="f0Y-7O-dck">
                                         <rect key="frame" x="94" y="0.0" width="234" height="118"/>
                                         <subviews>
-                                            <slider opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="qGp-Tk-YCj">
+                                            <slider opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="qGp-Tk-YCj" userLabel="Red Slider">
                                                 <rect key="frame" x="-2" y="0.0" width="238" height="39"/>
                                                 <color key="minimumTrackTintColor" red="0.96755349940000002" green="0.1404849601" blue="0.21331263249999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <connections>
-                                                    <action selector="sliderRedAction" destination="BYZ-38-t0r" eventType="valueChanged" id="MFk-QW-fED"/>
+                                                    <action selector="rgbSlider:" destination="BYZ-38-t0r" eventType="valueChanged" id="PBq-op-XHg"/>
                                                 </connections>
                                             </slider>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="zGa-uF-D79">
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="zGa-uF-D79" userLabel="Green Slider ">
                                                 <rect key="frame" x="-2" y="48" width="238" height="31"/>
                                                 <color key="minimumTrackTintColor" red="0.2327980741" green="0.76942896839999997" blue="0.2517605845" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <connections>
-                                                    <action selector="sliderGreenAction" destination="BYZ-38-t0r" eventType="valueChanged" id="Iuh-4P-mcZ"/>
+                                                    <action selector="rgbSlider:" destination="BYZ-38-t0r" eventType="valueChanged" id="lNV-ZL-uwN"/>
                                                 </connections>
                                             </slider>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="xX2-Te-MBe">
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="xX2-Te-MBe" userLabel="Blue Slider ">
                                                 <rect key="frame" x="-2" y="88" width="238" height="31"/>
                                                 <color key="minimumTrackTintColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
-                                                    <action selector="sliderBlueAction" destination="BYZ-38-t0r" eventType="valueChanged" id="wi5-fe-4vC"/>
+                                                    <action selector="rgbSlider:" destination="BYZ-38-t0r" eventType="valueChanged" id="q2M-Py-nRb"/>
                                                 </connections>
                                             </slider>
                                         </subviews>
@@ -197,6 +200,9 @@
                         <outlet property="sliderBlue" destination="xX2-Te-MBe" id="f1N-RU-Jok"/>
                         <outlet property="sliderGreen" destination="zGa-uF-D79" id="aNG-7R-IRd"/>
                         <outlet property="sliderRed" destination="qGp-Tk-YCj" id="6S2-0p-fBI"/>
+                        <outlet property="textFieldValueBlue" destination="ZV2-CS-Hcc" id="emx-eg-uQi"/>
+                        <outlet property="textFieldValueGreen" destination="lCl-IK-3Sh" id="IUx-08-5bv"/>
+                        <outlet property="textFieldValueRed" destination="Yw4-Qx-5ve" id="2hr-7u-bGw"/>
                         <outlet property="valueBlue" destination="gD5-ZQ-nzp" id="G7S-tB-HlY"/>
                         <outlet property="valueGreen" destination="t0d-nF-7Qm" id="23q-Uo-kEL"/>
                         <outlet property="valueRed" destination="m9O-eg-heP" id="jM7-LV-d8d"/>
@@ -204,7 +210,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="904" y="84"/>
+            <point key="canvasLocation" x="999" y="84"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aCQ-hK-lRs">
@@ -229,8 +235,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemGray4Color">
-            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
