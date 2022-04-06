@@ -88,9 +88,9 @@ extension SettingColorViewController {
     
     private func setValueFromMainScreen() {
         
-    sliderRed.value = (Float(colorMainScreen.cgColor.components![0])) * 100
-    sliderGreen.value = (Float(colorMainScreen.cgColor.components![1])) * 100
-    sliderBlue.value = (Float(colorMainScreen.cgColor.components![2])) * 100
+        sliderRed.value = (Float(colorMainScreen.cgColor.components?[0] ?? 0)) * 100
+        sliderGreen.value = (Float(colorMainScreen.cgColor.components?[1] ?? 0)) * 100
+        sliderBlue.value = (Float(colorMainScreen.cgColor.components?[2] ?? 0)) * 100
 
     textFieldValueRed.text = getShortString(from: sliderRed.value)
     textFieldValueGreen.text = getShortString(from: sliderGreen.value)

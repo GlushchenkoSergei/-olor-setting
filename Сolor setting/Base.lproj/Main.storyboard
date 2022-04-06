@@ -41,6 +41,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="mainScreen" destination="JFM-kr-I83" id="xX7-EN-fE4"/>
                     </connections>
@@ -177,11 +178,10 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pt8-49-hSw">
-                                <rect key="frame" x="158" y="691" width="98" height="31"/>
+                                <rect key="frame" x="162.5" y="575" width="89" height="46"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="31" id="JNj-7y-8na"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="98" id="eOB-19-rM2"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="89" id="ij8-gC-B4G"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -196,13 +196,12 @@
                         <constraints>
                             <constraint firstItem="neo-vH-Wnb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="3PN-do-vFX"/>
                             <constraint firstItem="nPO-iz-dxz" firstAttribute="top" secondItem="neo-vH-Wnb" secondAttribute="bottom" constant="47" id="4gU-c0-yAe"/>
-                            <constraint firstItem="neo-vH-Wnb" firstAttribute="centerX" secondItem="pt8-49-hSw" secondAttribute="centerX" id="FRP-2D-sbA"/>
+                            <constraint firstItem="pt8-49-hSw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OOr-bA-qI6"/>
                             <constraint firstItem="nPO-iz-dxz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="W6y-HS-akq"/>
-                            <constraint firstItem="pt8-49-hSw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="158" id="YSC-bl-PsW"/>
                             <constraint firstItem="neo-vH-Wnb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="60" id="cqt-12-UCX"/>
+                            <constraint firstItem="pt8-49-hSw" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="150" id="me2-uo-0eb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="neo-vH-Wnb" secondAttribute="trailing" constant="16" id="mpS-Ca-JEd"/>
                             <constraint firstItem="neo-vH-Wnb" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.166295" id="n0N-Bl-HZK"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="pt8-49-hSw" secondAttribute="bottom" constant="140" id="qEy-oD-YzJ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nPO-iz-dxz" secondAttribute="trailing" constant="16" id="xNG-L3-cIR"/>
                         </constraints>
                     </view>
@@ -222,7 +221,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="999" y="84"/>
+            <point key="canvasLocation" x="997.5" y="83.450704225352112"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aCQ-hK-lRs">
