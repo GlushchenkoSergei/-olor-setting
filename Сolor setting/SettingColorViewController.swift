@@ -25,9 +25,8 @@ class SettingColorViewController: UIViewController {
     
     @IBOutlet var buttonDoneLabel: UIButton!
     
-
-    
     var colorMainScreen: UIColor!
+    var delegate: SettingColorViewControllerDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,48 +42,59 @@ class SettingColorViewController: UIViewController {
         setСolorForScreen()
         switch sender {
         case sliderRed:
-            textFieldValueRed.text = String(roundingToHundred(sliderRed.value))
+            textFieldValueRed.text = getShortString(from: sliderRed.value)
             valueRed.text = textFieldValueRed.text
         case sliderGreen:
-            textFieldValueGreen.text = String(roundingToHundred(sliderGreen.value))
+            textFieldValueGreen.text = getShortString(from: sliderGreen.value)
             valueGreen.text = textFieldValueGreen.text
         default:
-            textFieldValueBlue.text = String(roundingToHundred(sliderBlue.value))
+            textFieldValueBlue.text = getShortString(from: sliderBlue.value)
             valueBlue.text = textFieldValueBlue.text
         }
     }
     
     @IBAction func doneButton(_ sender: Any) {
-        print("Нажал кнопку дан")
+        delegate.setNewColor(for: mainScreen.backgroundColor ?? UIColor.init(
+            red: CGFloat(Float(0)),
+            green: CGFloat(Float(0)),
+            blue: CGFloat(Float(0)),
+            alpha: 1)
+        )
+        dismiss(animated: true)
     }
- 
-    
 }
 
 
 extension SettingColorViewController {
     
-   private func roundingToHundred(_ value: Float) -> Float {
-        round(value * 100)/100
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
+    
+   private func getShortString(from value: Float) -> String {
+        let roundValue = round(value * 1)/1
+       let shortString = "\(Int(roundValue))"
+       return shortString
     }
     
     private func setСolorForScreen() {
         mainScreen.backgroundColor = UIColor.init(
-            red: CGFloat(sliderRed.value),
-            green: CGFloat(sliderGreen.value),
-            blue: CGFloat(sliderBlue.value),
+            red: CGFloat(sliderRed.value / 100),
+            green: CGFloat(sliderGreen.value / 100),
+            blue: CGFloat(sliderBlue.value / 100),
             alpha: 1)
     }
     
     private func setValueFromMainScreen() {
         
-    sliderRed.value = Float(colorMainScreen.cgColor.components![0])
-    sliderGreen.value = Float(colorMainScreen.cgColor.components![1])
-    sliderBlue.value = Float(colorMainScreen.cgColor.components![2])
+    sliderRed.value = (Float(colorMainScreen.cgColor.components![0])) * 100
+    sliderGreen.value = (Float(colorMainScreen.cgColor.components![1])) * 100
+    sliderBlue.value = (Float(colorMainScreen.cgColor.components![2])) * 100
 
-    textFieldValueRed.text = "\(roundingToHundred(sliderRed.value))"
-    textFieldValueGreen.text = "\(roundingToHundred(sliderGreen.value))"
-    textFieldValueBlue.text = "\(roundingToHundred(sliderBlue.value))"
+    textFieldValueRed.text = getShortString(from: sliderRed.value)
+    textFieldValueGreen.text = getShortString(from: sliderGreen.value)
+    textFieldValueBlue.text = getShortString(from: sliderBlue.value)
 
     valueRed.text = textFieldValueRed.text
     valueGreen.text = textFieldValueGreen.text
@@ -92,29 +102,49 @@ extension SettingColorViewController {
     }
 }
 
+// MARK - Set Text Field Delegate
 extension SettingColorViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
         switch textField {
         case textFieldValueRed:
-            if let value = Float(textFieldValueRed.text ?? "0.0") {
-                sliderRed.value = value
-                valueRed.text = String(value)
-            }
+           actionAfterDidEndEditing(textFieldValueRed, sliderRed, valueRed)
         case textFieldValueGreen:
-            if let value = Float(textFieldValueGreen.text ?? "0.0") {
-                sliderGreen.value = value
-                valueGreen.text = String(value)
-            }
+            actionAfterDidEndEditing(textFieldValueGreen, sliderGreen, valueGreen)
         default:
-            if let value = Float(textFieldValueBlue.text ?? "0.0") {
-                sliderBlue.value = value
-                valueBlue.text = String(value)
-            }
+            actionAfterDidEndEditing(textFieldValueBlue, sliderBlue, valueBlue)
         }
         setСolorForScreen()
-        return true
+    }
+    
+    private func actionAfterDidEndEditing(_ textField: UITextField,
+                                          _ slider: UISlider,
+                                          _ LabelColor: UILabel) {
+        
+        guard let value = Float(textField.text ?? ""),
+              value <= 100,
+              value >= 0 else {
+                  textField.text = LabelColor.text
+                  return showAlert(with: "Ошибка",
+                                  and: "Введите число от 0 до 100")
+              }
+        slider.value = value
+        LabelColor.text = getShortString(from: value)
     }
 }
 
-
-
+// MARK: Set Alert Controller
+extension SettingColorViewController {
+    private func showAlert(with title: String, and message: String) {
+        let alert = UIAlertController(title: title,
+                                    message: message,
+                                    preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "ОК", style: .default)
+        alert.addAction(alertAction)
+        present(alert, animated: true)
+    }
+}
