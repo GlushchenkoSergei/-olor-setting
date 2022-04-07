@@ -13,22 +13,16 @@ protocol SettingColorViewControllerDelegate {
 
 class MainScreenViewController: UIViewController {
 
-    @IBOutlet var mainScreen: UIView!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let setColorVC = segue.destination as? SettingColorViewController else {return}
-        setColorVC.colorMainScreen = mainScreen.backgroundColor
+
+        setColorVC.colorMainScreen = view.backgroundColor
         setColorVC.delegate = self
     }
 }
 
 extension MainScreenViewController: SettingColorViewControllerDelegate {
     func setNewColor(for backgroundColor: UIColor) {
-        mainScreen.backgroundColor = backgroundColor
+        view.backgroundColor = backgroundColor
     }
 }
